@@ -5766,3 +5766,13 @@ bool8 CheckAddCoins(void)
     else
         return TRUE;
 }
+
+void RemoveMonFromParty(void)
+{
+    u8 slot = gSpecialVar_0x8004;
+    if (slot >= PARTY_SIZE)
+        return;
+    ZeroMonData(&gPlayerParty[slot]);
+    CompactPartySlots();
+    CalculatePlayerPartyCount();
+}

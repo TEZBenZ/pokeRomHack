@@ -1,0 +1,161 @@
+raw `
+SainteAnne_ProfessorHouse_MapScripts::
+	.byte 0
+
+
+SainteAnne_ProfessorHouse_Prof::
+	lock
+	faceplayer
+	goto_if_eq VAR_STORY_PROGRESS, 1, SainteAnne_ProfessorHouse_EventScript_Intro
+	goto_if_eq VAR_STORY_PROGRESS, 3, SainteAnne_ProfessorHouse_EventScript_Goto_SaintFrancois
+	msgbox SainteAnne_ProfessorHouse_Text_Prof, MSGBOX_DEFAULT
+	release
+	end
+
+SainteAnne_ProfessorHouse_EventScript_Intro::
+	msgbox SainteAnne_ProfessorHouse_Text_Intro, MSGBOX_DEFAULT
+	setvar VAR_STORY_PROGRESS, 2
+	clearflag FLAG_HIDE_BIRCH_BAG
+	addobject LOCALID_BIRCH_BAG
+	release
+	end
+
+SainteAnne_ProfessorHouse_EventScript_Goto_SaintFrancois::
+	msgbox SainteAnne_ProfessorHouse_Text_Goto_SaintFrancois, MSGBOX_DEFAULT
+	release
+	end
+
+SainteAnne_ProfessorHouse_Choose_Starter::
+	lock
+	fadescreen FADE_TO_BLACK
+	special ChooseStarter
+	setflag FLAG_SYS_POKEMON_GET
+	setvar VAR_STORY_PROGRESS, 3
+	goto SainteAnne_ProfessorHouse_Rival_Fight
+	release 
+	end
+
+SainteAnne_ProfessorHouse_Text_Intro:
+	.string "Hello {PLAYER}, im glad to meet you\p"
+	.string "I Heard you are planning to go on\n"
+	.string "a big journey around REGION, \p"
+	.string "just like your brother\p"
+	.string "But first i need to ask for your help\p"
+	.string "A package for me was send to\n"
+	.string "the harbour in Saint Francois\p"
+	.string "Please go and bring it back here!\p"
+	.string "In return you, please chose\n"
+	.string "a compagnon to accompany you\p"
+	.string "It is dangerous to travel the wilds\n"
+	.string "without a Pokemon\p"
+	.string "Look what i have in this bag for you!\p"
+	.string "And please give you mother my regards,\n"
+	.string "when youre in Saint Francois$"
+
+SainteAnne_ProfessorHouse_Text_Goto_SaintFrancois:
+	.string "To get to Saint francois,\n"
+	.string "just take the route east of here!$"
+
+SainteAnne_ProfessorHouse_Text_Prof:
+	.string "I hope your journey is going well!$"`
+
+script SainteAnne_ProfessorHouse_Rival_Fight {
+	lock
+	bufferpartymonnick(STR_VAR_1, 0)
+	clearflag(FLAG_HIDE_RIVAL_LAB)
+	addobject(LOCALID_RIVAL)
+	applymovement(LOCALID_RIVAL, SainteAnne_ProfessorHouse_Movement_RIVAL_COMES_IN)
+	waitmovement(0)
+	msgbox(format("HEY!\nYou got a Pokemon before me??\pWhat?? You even took {STR_VAR_1}? Thats my favourite! Let me get something else then"))
+	getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+	if (var(VAR_TEMP_0) == 7 && var(VAR_TEMP_1) == 6){
+		applymovement(OBJ_EVENT_ID_PLAYER, SainteAnne_ProfessorHouse_Movement_PLAYER_OUT_OF_WAY)
+		waitmovement(0)
+	}
+	applymovement(LOCALID_RIVAL, SainteAnne_ProfessorHouse_Movement_RIVAL_GETS_STARTER)
+	waitmovement(0)
+	setflag(FLAG_HIDE_BIRCH_BAG)
+	removeobject(LOCALID_BIRCH_BAG)
+	
+	msgbox(format("I know your {STR_VAR_1} is better off with me. If I beat you, i get to keep it."))
+	setflag(FLAG_NO_WHITEOUT)
+	switch(var(VAR_STARTER_MON)){
+		case 0:
+			trainerbattle_no_intro(TRAINER_RIVAL_LAB_CHARMANDER, format("Damn it! Alright i will keep this crappy thing. And i will get it strong enough to beat you!"))
+		case 1:
+			trainerbattle_no_intro(TRAINER_RIVAL_LAB_FROAKIE, format("Damn it! Alright i will keep this crappy thing. And i will get it strong enough to beat you!"))
+		case 2:
+			trainerbattle_no_intro(TRAINER_RIVAL_LAB_TREECKO, format("Damn it! Alright i will keep this crappy thing. And i will get it strong enough to beat you!"))
+	}
+	clearflag(FLAG_NO_WHITEOUT)
+	special(HealPlayerParty)
+	#FIGHT
+	if(!defeated(TRAINER_RIVAL_LAB_CHARMANDER) && !defeated(TRAINER_RIVAL_LAB_FROAKIE) && !defeated(TRAINER_RIVAL_LAB_TREECKO)) {
+		msgbox(format("HA! I told you i was better! Now give me your {STR_VAR_1}. You can have mine in return. I have no use for it now anyway"))
+		#CHANGE POKEMON
+		switch(var(VAR_STARTER_MON)){
+		case 0:
+			givemon(SPECIES_CHARMANDER, 5)
+		case 1:
+			givemon(SPECIES_FROAKIE, 5)
+		case 2:
+			givemon(SPECIES_TREECKO, 5)
+		}
+		setvar(VAR_0x8004, 0)
+		special(RemoveMonFromParty)
+		playfanfare(MUS_OBTAIN_ITEM)
+		msgbox(format("Rival gave you his Pokemon and took yours!"))	
+		waitfanfare	
+	} 
+		
+		
+	
+	applymovement(LOCALID_RIVAL, SainteAnne_ProfessorHouse_Movement_RIVAL_GOES_OUT)
+		waitmovement(0)
+		setflag(FLAG_HIDE_RIVAL_LAB)
+		removeobject(LOCALID_RIVAL)
+	
+	release
+}
+
+script SaintAnne_Block_SaintFrancois {
+	#CHANGE VAR VALUE ACCORDINGLY TO STORY PROGRESS
+	if(var(VAR_STORY_PROGRESS) < 4){
+		lockall
+		playse(SE_PIN)
+		applymovement(LOCALID_POLICEMAN, Common_Movement_ExclamationMark)
+		waitmovement(0)
+		msgbox(format("You can't go there! Protesters are blocking the Road."))
+		applymovement(OBJ_EVENT_ID_PLAYER, Movement_Block_SaintFrancois )
+		waitmovement(0)
+		releaseall
+	}
+}
+
+movement Movement_Block_SaintFrancois {
+	walk_right
+	delay_16
+}
+movement SainteAnne_ProfessorHouse_Movement_RIVAL_COMES_IN {
+	walk_up * 3
+	emote_exclamation_mark
+}
+
+movement SainteAnne_ProfessorHouse_Movement_PLAYER_OUT_OF_WAY {
+	walk_left
+	face_right
+}
+
+movement SainteAnne_ProfessorHouse_Movement_RIVAL_GETS_STARTER {
+	walk_up * 2
+	delay_16
+	face_left
+}
+
+movement SainteAnne_ProfessorHouse_Movement_RIVAL_GOES_OUT {
+	walk_down * 5
+}
+
+
+
+

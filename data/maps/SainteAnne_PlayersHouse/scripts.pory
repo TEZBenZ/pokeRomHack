@@ -1,0 +1,43 @@
+raw `
+SainteAnne_PlayersHouse_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, SainteAnne_PlayersHouse_OnFrame
+	.byte 0
+
+SainteAnne_PlayersHouse_OnFrame:
+	map_script_2 VAR_STORY_PROGRESS, 0, SainteAnne_PlayersHouse_EventScript_Intro
+	.2byte 0
+
+SainteAnne_PlayersHouse_EventScript_Intro::
+	lockall
+	msgbox SainteAnne_PlayersHouse_Text_Intro, MSGBOX_DEFAULT
+	setvar VAR_STORY_PROGRESS, 1
+	releaseall
+	end
+
+SainteAnne_PlayersHouse_EventScript_Vater::
+	lock
+	faceplayer
+	goto_if_eq VAR_STORY_PROGRESS, 1, SainteAnne_PlayersHouse_EventScript_Goto_Lab
+	msgbox SainteAnne_PlayersHouse_Text_Vater, MSGBOX_DEFAULT
+	release
+	end
+
+SainteAnne_PlayersHouse_EventScript_Goto_Lab::
+	msgbox SainteAnne_PlayersHouse_Text_Intro2, MSGBOX_DEFAULT
+	release
+	end
+
+SainteAnne_PlayersHouse_Text_Intro:
+	.string "Hello, nice to see you again\p"
+	.string "The professor asked about you\p"
+	.string "Go over to his lab\n"
+	.string "and introduce yourself!$"
+
+SainteAnne_PlayersHouse_Text_Intro2:
+	.string "The professor is waiting for you!\p"
+	.string "His lab is right next to our house$"
+
+SainteAnne_PlayersHouse_Text_Vater:
+	.string "Good to see you again!\p"
+	.string "Get a little rest$"
+`

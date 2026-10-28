@@ -1738,3 +1738,13 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/scripts/battle_frontier.inc"
 	.include "data/scripts/apricorn_tree.inc"
 	.include "data/scripts/wild_encounter.inc"
+
+	.include "data/maps/SaintAnne/scripts.inc"
+
+	.include "data/maps/SainteAnne_RivalHouse/scripts.inc"
+
+	.include "data/maps/SainteAnne_ProfessorHouse/scripts.inc"
+
+	.include "data/maps/SainteAnne_PlayersHouse/scripts.inc"
+
+	.include "data/maps/Route1custom/scripts.inc"
