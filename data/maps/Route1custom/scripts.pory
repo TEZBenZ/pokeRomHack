@@ -1,0 +1,10 @@
+mapscripts Route1custom_MapScripts{}
+
+script Route1Custom_Block_LeMoule {
+    lock
+    faceplayer
+    msgbox(format("You cannot go here! We have an important operation running right now in Saint Francois and have to block the exits. Get lost!"))
+    turnobject(LOCALID_TEAM_AQUA_M, DIR_SOUTH)
+    release
+    
+}

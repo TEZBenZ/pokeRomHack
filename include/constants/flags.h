@@ -54,7 +54,7 @@
 #define FLAG_HIDE_BIRCH_BAG  0x20 // Unused Flag
 #define FLAG_HIDE_RIVAL_LAB  0x21 // Unused Flag
 #define FLAG_NO_WHITEOUT     0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
+#define FLAG_HIDE_AQUA_BLOCK_SF   0x23 // Unused Flag
 #define FLAG_UNUSED_0x024    0x24 // Unused Flag
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag

@@ -9367,7 +9367,7 @@
     {
       "id": "LAYOUT_ROUTE1CUSTOM",
       "name": "Route1custom_Layout",
-      "width": 150,
+      "width": 120,
       "height": 30,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
