@@ -8,6 +8,7 @@ SainteAnne_ProfessorHouse_Prof::
 	faceplayer
 	goto_if_eq VAR_STORY_PROGRESS, 1, SainteAnne_ProfessorHouse_EventScript_Intro
 	goto_if_eq VAR_STORY_PROGRESS, 3, SainteAnne_ProfessorHouse_EventScript_Goto_SaintFrancois
+	goto_if_eq VAR_STORY_PROGRESS, 5, SainteAnne_ProfessorHouse_EventScript_Parcel
 	msgbox SainteAnne_ProfessorHouse_Text_Prof, MSGBOX_DEFAULT
 	release
 	end
@@ -115,6 +116,22 @@ script SainteAnne_ProfessorHouse_Rival_Fight {
 		setflag(FLAG_HIDE_RIVAL_LAB)
 		removeobject(LOCALID_RIVAL)
 	
+	release
+}
+
+# Spieler bringt das Paket von der Mutter (Story 5): Pokedex und Karte
+script SainteAnne_ProfessorHouse_EventScript_Parcel {
+	msgbox(format("PROF: {PLAYER}! Is that my parcel from Saint Francois? Thank you so much, I was waiting for it!"))
+	removeitem(ITEM_PARCEL)
+	msgbox(format("PROF: As a thank you, please take these. They will help you a lot on your journey."))
+	playfanfare(MUS_OBTAIN_ITEM)
+	message(format("{PLAYER} received the POKéDEX!"))
+	waitfanfare
+	setflag(FLAG_SYS_POKEDEX_GET)
+	special(SetUnlockedPokedexFlags)
+	giveitem(ITEM_TOWN_MAP)
+	msgbox(format("PROF: Oh, and one more thing: your father was asking about you. You should go and see him!"))
+	setvar(VAR_STORY_PROGRESS, 6)
 	release
 }
 
