@@ -1,4 +1,13 @@
-mapscripts SaintFrancois_MapScripts {}
+mapscripts SaintFrancois_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_SF_AQUA_REMATCH)) {
+            call(SaintFrancois_Setup_Rematch)
+        } elif (flag(FLAG_HIDE_AQUA_SF)) {
+            # Rüpel sind schon besiegt, Zwischensequenz nicht erneut starten
+            setvar(VAR_TEMP_0, 1)
+        }
+    }
+}
 
 script SaintFrancois_Aqua_Fight {
     lockall
@@ -41,8 +50,135 @@ script SaintFrancois_Aqua_Fight {
     waitmovement(LOCALID_AQUA_GIRL_SF)
     waitmovement(LOCALID_AQUA_GUY_SF)
 
-    # TODO: Kampf
+    goto(SaintFrancois_Aqua_Battle)
+}
+
+# Doppelkampf: Spieler + Rivale gegen die beiden Rüpel.
+# Bei einer Niederlage bleibt FLAG_SF_AQUA_REMATCH gesetzt, dann stehen die
+# Rüpel beim nächsten Betreten der Map in Kampfstellung und warten.
+script SaintFrancois_Aqua_Battle {
+    setflag(FLAG_SF_AQUA_REMATCH)
+    call(SaintFrancois_Aqua_Multi_Battle)
+    if (var(VAR_RESULT) != B_OUTCOME_WON) {
+        fadescreen(FADE_TO_BLACK)
+        special(SetCB2WhiteOut)
+        end
+    }
+    clearflag(FLAG_SF_AQUA_REMATCH)
+
+    msgbox(format("GRUNT: Tch! We'll be back, you brats! Retreat!"))
+    closemessage
+    applymovement(LOCALID_AQUA_GIRL_SF, Grunt_Runs_Away_SF)
+    applymovement(LOCALID_AQUA_GUY_SF, Grunt_Runs_Away_SF)
+    waitmovement(LOCALID_AQUA_GIRL_SF)
+    waitmovement(LOCALID_AQUA_GUY_SF)
+    setflag(FLAG_HIDE_AQUA_SF)
+    removeobject(LOCALID_AQUA_GIRL_SF)
+    removeobject(LOCALID_AQUA_GUY_SF)
+    # Rüpel am Höhleneingang auf Route 1 verschwindet auch
+    setflag(FLAG_HIDE_AQUA_BLOCK_SF)
+
+    applymovement(LOCALID_RIVAL_SF, Common_Movement_FacePlayer)
+    waitmovement(LOCALID_RIVAL_SF)
+    msgbox(format("RIVAL: Phew, we showed them! I'll go ahead to Le Moule. Meet me there, {PLAYER}!"))
+    closemessage
+    applymovement(LOCALID_RIVAL_SF, Rival_Leaves_SF)
+    waitmovement(LOCALID_RIVAL_SF)
+    setflag(FLAG_HIDE_RIVAL_SF)
+    removeobject(LOCALID_RIVAL_SF)
     releaseall
+}
+
+movement Grunt_Runs_Away_SF {
+    walk_fast_down * 2
+    walk_fast_left * 10
+}
+
+movement Rival_Leaves_SF {
+    walk_up * 2
+    walk_left * 10
+}
+
+# Rüpel und Rivale auf ihre Positionen nach der Zwischensequenz setzen und
+# den Trigger der Zwischensequenz abschalten
+script SaintFrancois_Setup_Rematch {
+    setvar(VAR_TEMP_0, 1)
+    setobjectxyperm(LOCALID_AQUA_GIRL_SF, 28, 33)
+    setobjectmovementtype(LOCALID_AQUA_GIRL_SF, MOVEMENT_TYPE_FACE_UP)
+    setobjectxyperm(LOCALID_AQUA_GUY_SF, 29, 33)
+    setobjectmovementtype(LOCALID_AQUA_GUY_SF, MOVEMENT_TYPE_FACE_UP)
+    clearflag(FLAG_HIDE_RIVAL_SF)
+    setobjectxyperm(LOCALID_RIVAL_SF, 27, 33)
+    setobjectmovementtype(LOCALID_RIVAL_SF, MOVEMENT_TYPE_FACE_UP)
+}
+
+script SaintFrancois_Aqua_Grunt_Talk {
+    if (!flag(FLAG_SF_AQUA_REMATCH)) {
+        end
+    }
+    lockall
+    faceplayer
+    msgbox(format("GRUNT: You again? Fine, this time we'll finish you off!"))
+    closemessage
+    goto(SaintFrancois_Aqua_Battle)
+}
+
+script SaintFrancois_Rival_Talk {
+    if (!flag(FLAG_SF_AQUA_REMATCH)) {
+        end
+    }
+    lock
+    faceplayer
+    msgbox(format("RIVAL: {PLAYER}! We can't let them get away with this. Let's try again!"))
+    release
+}
+
+# Rivale hat das Starter-Pokemon aus dem Labor. Hat der Spieler dort verloren,
+# wurden die Pokemon getauscht und der Rivale hat das ursprüngliche des Spielers.
+script SaintFrancois_Aqua_Multi_Battle {
+    if (defeated(TRAINER_RIVAL_LAB_CHARMANDER) || defeated(TRAINER_RIVAL_LAB_FROAKIE) || defeated(TRAINER_RIVAL_LAB_TREECKO)) {
+        switch (var(VAR_STARTER_MON)) {
+            case 0:
+                goto(SaintFrancois_Aqua_Multi_Battle_Charmander)
+            case 1:
+                goto(SaintFrancois_Aqua_Multi_Battle_Froakie)
+            case 2:
+                goto(SaintFrancois_Aqua_Multi_Battle_Treecko)
+        }
+    } else {
+        switch (var(VAR_STARTER_MON)) {
+            case 0:
+                goto(SaintFrancois_Aqua_Multi_Battle_Treecko)
+            case 1:
+                goto(SaintFrancois_Aqua_Multi_Battle_Charmander)
+            case 2:
+                goto(SaintFrancois_Aqua_Multi_Battle_Froakie)
+        }
+    }
+    goto(SaintFrancois_Aqua_Multi_Battle_Treecko)
+}
+
+script SaintFrancois_Aqua_Multi_Battle_Treecko {
+    multi_fixed_2_vs_2(TRAINER_SF_GRUNT_GIRL, SaintFrancois_Text_GruntGirlDefeat, TRAINER_SF_GRUNT_GUY, SaintFrancois_Text_GruntGuyDefeat, PARTNER_RIVAL_SF_TREECKO)
+    return
+}
+
+script SaintFrancois_Aqua_Multi_Battle_Charmander {
+    multi_fixed_2_vs_2(TRAINER_SF_GRUNT_GIRL, SaintFrancois_Text_GruntGirlDefeat, TRAINER_SF_GRUNT_GUY, SaintFrancois_Text_GruntGuyDefeat, PARTNER_RIVAL_SF_CHARMANDER)
+    return
+}
+
+script SaintFrancois_Aqua_Multi_Battle_Froakie {
+    multi_fixed_2_vs_2(TRAINER_SF_GRUNT_GIRL, SaintFrancois_Text_GruntGirlDefeat, TRAINER_SF_GRUNT_GUY, SaintFrancois_Text_GruntGuyDefeat, PARTNER_RIVAL_SF_FROAKIE)
+    return
+}
+
+text SaintFrancois_Text_GruntGirlDefeat {
+    format("No way! Beaten by a couple of kids?")
+}
+
+text SaintFrancois_Text_GruntGuyDefeat {
+    format("Grr... This isn't over!")
 }
 
 movement Girl_Sees_Prot_SF {

@@ -45,8 +45,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "SaintFrancois_Aqua_Grunt_Talk",
+      "flag": "FLAG_HIDE_AQUA_SF"
     },
     {
       "local_id": "LOCALID_AQUA_GUY_SF",
@@ -59,8 +59,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "SaintFrancois_Aqua_Grunt_Talk",
+      "flag": "FLAG_HIDE_AQUA_SF"
     },
     {
       "local_id": "LOCALID_RIVAL_SF",
@@ -73,7 +73,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "SaintFrancois_Rival_Talk",
       "flag": "FLAG_HIDE_RIVAL_SF"
     },
     {

@@ -42,3 +42,39 @@ EVs: 252 Atk / 252 SpA / 6 SpD
 - Protect
 - Solar Beam
 - Dragon Claw
+
+=== PARTNER_RIVAL_SF_TREECKO ===
+Name: RIVAL
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+Treecko
+Level: 7
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== PARTNER_RIVAL_SF_CHARMANDER ===
+Name: RIVAL
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+Charmander
+Level: 7
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== PARTNER_RIVAL_SF_FROAKIE ===
+Name: RIVAL
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+Froakie
+Level: 7
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
