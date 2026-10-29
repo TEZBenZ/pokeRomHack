@@ -113,6 +113,7 @@ EventScript_ResetAllBerries::
 	return
 
 EventScript_ResetAllMapFlags::
+	setflag FLAG_HIDE_RIVAL_SF
 	setflag FLAG_HIDE_RIVAL_LAB
 	setflag FLAG_HIDE_BIRCH_BAG
 	setflag FLAG_HIDE_CONTEST_POKE_BALL

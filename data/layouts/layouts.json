@@ -9376,6 +9376,16 @@
       "border_height": 2,
       "border_width": 2,
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_SAINT_FRANCOIS",
+      "name": "SaintFrancois_Layout",
+      "width": 50,
+      "height": 40,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Dewford",
+      "border_filepath": "data/layouts/SaintFrancois/border.bin",
+      "blockdata_filepath": "data/layouts/SaintFrancois/map.bin"
     }
   ]
 }

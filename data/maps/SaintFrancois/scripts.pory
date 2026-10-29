@@ -1,0 +1,82 @@
+mapscripts SaintFrancois_MapScripts {}
+
+script SaintFrancois_Aqua_Fight {
+    lockall
+    msgbox(format("GRUNT: This is not a request. You need to take us to ISLAND, and we're not here to discuss it."))
+    msgbox(format("MOTHER: Even if I wanted to, I couldn't. The sea is too rough these days. It will take some time until the boat can leave the harbor again."))
+    msgbox(format("GRUNT: LIES! I don't believe you. Either you take us there voluntarily, or we'll make you drive the boat!"))
+
+    playse(SE_PIN)
+    applymovement(LOCALID_AQUA_GIRL_SF, Girl_Sees_Prot_SF)
+    applymovement(LOCALID_AQUA_GUY_SF, Guy_Sees_Prot_SF)
+    waitmovement(LOCALID_AQUA_GIRL_SF)
+    waitmovement(LOCALID_AQUA_GUY_SF)
+
+    msgbox(format("GRUNT: What are you doing here? Get lost!"))
+    msgbox(format("MOTHER: {PLAYER}! Please help me, these people want to force me to take them to ISLAND!"))
+
+    # Rivale kommt, je nach Spielerposition
+    clearflag(FLAG_HIDE_RIVAL_SF)
+    addobject(LOCALID_RIVAL_SF)
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    switch (var(VAR_TEMP_0)) {
+        case 29:
+            applymovement(LOCALID_RIVAL_SF, Rival_Arrives_SF_23)
+        default:
+            applymovement(LOCALID_RIVAL_SF, Rival_Arrives_SF_24)
+    }
+    waitmovement(LOCALID_RIVAL_SF)
+
+    msgbox(format("RIVAL: What's going on here? Leave {PLAYER}'s mother alone!"))
+    msgbox(format("GRUNT: Ugh, you kids keep annoying me. I've talked enough, let's fight!"))
+
+    # Grunts gehen nach oben, je nach Spielerposition
+    if (var(VAR_TEMP_0) == 30) {
+        applymovement(LOCALID_AQUA_GIRL_SF, Girl_Goes_Up_SF_30)
+        applymovement(LOCALID_AQUA_GUY_SF, Guy_Goes_Up_SF_30)
+    } else {
+        applymovement(LOCALID_AQUA_GIRL_SF, Grunt_Goes_Up_SF)
+        applymovement(LOCALID_AQUA_GUY_SF, Grunt_Goes_Up_SF)
+    }
+    waitmovement(LOCALID_AQUA_GIRL_SF)
+    waitmovement(LOCALID_AQUA_GUY_SF)
+
+    # TODO: Kampf
+    releaseall
+}
+
+movement Girl_Sees_Prot_SF {
+    emote_exclamation_mark
+}
+
+movement Guy_Sees_Prot_SF {
+    emote_exclamation_mark
+    walk_left
+    walk_up
+}
+
+movement Rival_Arrives_SF_23 {
+    walk_right * 23
+    walk_down
+}
+
+movement Rival_Arrives_SF_24 {
+    walk_right * 24
+    walk_down
+}
+
+movement Grunt_Goes_Up_SF {
+    walk_up * 2
+}
+
+movement Girl_Goes_Up_SF_30 {
+    walk_up * 2
+    walk_right
+    face_up
+}
+
+movement Guy_Goes_Up_SF_30 {
+    walk_up
+    walk_right
+    walk_up
+}

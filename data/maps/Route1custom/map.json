@@ -17,6 +17,11 @@
       "map": "MAP_SAINT_ANNE",
       "offset": -17,
       "direction": "down"
+    },
+    {
+      "map": "MAP_SAINT_FRANCOIS",
+      "offset": -5,
+      "direction": "right"
     }
   ],
   "object_events": [

@@ -1748,3 +1748,5 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/SainteAnne_PlayersHouse/scripts.inc"
 
 	.include "data/maps/Route1custom/scripts.inc"
+
+	.include "data/maps/SaintFrancois/scripts.inc"
