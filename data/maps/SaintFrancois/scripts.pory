@@ -2,6 +2,9 @@ mapscripts SaintFrancois_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         if (flag(FLAG_SF_AQUA_REMATCH)) {
             call(SaintFrancois_Setup_Rematch)
+        } elif (flag(FLAG_HIDE_AQUA_SF)) {
+            # Rüpel sind schon besiegt, Zwischensequenz nicht erneut starten
+            setvar(VAR_TEMP_0, 1)
         }
     }
 }
@@ -63,8 +66,37 @@ script SaintFrancois_Aqua_Battle {
     }
     clearflag(FLAG_SF_AQUA_REMATCH)
 
-    # TODO: Story nach dem Kampf
+    msgbox(format("GRUNT: Tch! We'll be back, you brats! Retreat!"))
+    closemessage
+    applymovement(LOCALID_AQUA_GIRL_SF, Grunt_Runs_Away_SF)
+    applymovement(LOCALID_AQUA_GUY_SF, Grunt_Runs_Away_SF)
+    waitmovement(LOCALID_AQUA_GIRL_SF)
+    waitmovement(LOCALID_AQUA_GUY_SF)
+    setflag(FLAG_HIDE_AQUA_SF)
+    removeobject(LOCALID_AQUA_GIRL_SF)
+    removeobject(LOCALID_AQUA_GUY_SF)
+    # Rüpel am Höhleneingang auf Route 1 verschwindet auch
+    setflag(FLAG_HIDE_AQUA_BLOCK_SF)
+
+    applymovement(LOCALID_RIVAL_SF, Common_Movement_FacePlayer)
+    waitmovement(LOCALID_RIVAL_SF)
+    msgbox(format("RIVAL: Phew, we showed them! I'll go ahead to Le Moule. Meet me there, {PLAYER}!"))
+    closemessage
+    applymovement(LOCALID_RIVAL_SF, Rival_Leaves_SF)
+    waitmovement(LOCALID_RIVAL_SF)
+    setflag(FLAG_HIDE_RIVAL_SF)
+    removeobject(LOCALID_RIVAL_SF)
     releaseall
+}
+
+movement Grunt_Runs_Away_SF {
+    walk_fast_down * 2
+    walk_fast_left * 10
+}
+
+movement Rival_Leaves_SF {
+    walk_up * 2
+    walk_left * 10
 }
 
 # Rüpel und Rivale auf ihre Positionen nach der Zwischensequenz setzen und
