@@ -65,6 +65,8 @@ script SaintFrancois_Aqua_Battle {
         end
     }
     clearflag(FLAG_SF_AQUA_REMATCH)
+    # Doppelkampf gewonnen, jetzt kann man mit der Mutter reden
+    setvar(VAR_STORY_PROGRESS, 4)
 
     msgbox(format("GRUNT: Tch! We'll be back, you brats! Retreat!"))
     closemessage
@@ -110,6 +112,25 @@ script SaintFrancois_Setup_Rematch {
     clearflag(FLAG_HIDE_RIVAL_SF)
     setobjectxyperm(LOCALID_RIVAL_SF, 27, 33)
     setobjectmovementtype(LOCALID_RIVAL_SF, MOVEMENT_TYPE_FACE_UP)
+}
+
+# Nach dem Doppelkampf (Story 4) gibt die Mutter das Paket für den Professor
+# und 5 Pokebälle, danach (Story 5+) nur noch Standardtext.
+script SaintFrancois_Mother_Talk {
+    lock
+    faceplayer
+    if (var(VAR_STORY_PROGRESS) == 4) {
+        msgbox(format("MOTHER: {PLAYER}, thank you so much for helping me! Oh, before I forget: this parcel arrived for the professor. Could you bring it to him?"))
+        giveitem(ITEM_PARCEL)
+        msgbox(format("MOTHER: And take these POKé BALLS. With them you can catch your very first POKéMON yourself on your way home!"))
+        giveitem(ITEM_POKE_BALL, 5)
+        setvar(VAR_STORY_PROGRESS, 5)
+    } elif (var(VAR_STORY_PROGRESS) >= 5) {
+        msgbox(format("MOTHER: Hello {PLAYER}, how are you? The sea is still pretty stormy."))
+    } else {
+        msgbox(format("MOTHER: {PLAYER}, please help me!"))
+    }
+    release
 }
 
 script SaintFrancois_Aqua_Grunt_Talk {
