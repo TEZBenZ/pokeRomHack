@@ -57,6 +57,11 @@ SaintFrancois_Aqua_Fight_5:
 # 42 "data/maps/SaintFrancois/scripts.pory"
 	waitmovement LOCALID_AQUA_GUY_SF
 # 45 "data/maps/SaintFrancois/scripts.pory"
+	call SaintFrancois_Aqua_Multi_Battle
+# 46 "data/maps/SaintFrancois/scripts.pory"
+	compare VAR_RESULT, B_OUTCOME_WON
+	goto_if_ne SaintFrancois_Aqua_Fight_10
+# 53 "data/maps/SaintFrancois/scripts.pory"
 	releaseall
 	return
 
@@ -72,156 +77,246 @@ SaintFrancois_Aqua_Fight_6:
 	applymovement LOCALID_AQUA_GUY_SF, Guy_Goes_Up_SF_30
 	goto SaintFrancois_Aqua_Fight_5
 
-
+SaintFrancois_Aqua_Fight_10:
+# 47 "data/maps/SaintFrancois/scripts.pory"
+	fadescreen FADE_TO_BLACK
 # 48 "data/maps/SaintFrancois/scripts.pory"
-Girl_Sees_Prot_SF:
-# 49 "data/maps/SaintFrancois/scripts.pory"
-	emote_exclamation_mark
-	step_end
+	special SetCB2WhiteOut
+	end
 
-# 52 "data/maps/SaintFrancois/scripts.pory"
-Guy_Sees_Prot_SF:
-# 53 "data/maps/SaintFrancois/scripts.pory"
-	emote_exclamation_mark
-# 54 "data/maps/SaintFrancois/scripts.pory"
-	walk_left
-# 55 "data/maps/SaintFrancois/scripts.pory"
-	walk_up
-	step_end
 
-# 58 "data/maps/SaintFrancois/scripts.pory"
-Rival_Arrives_SF_23:
+SaintFrancois_Aqua_Multi_Battle::
 # 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
+	checktrainerflag TRAINER_RIVAL_LAB_CHARMANDER
+	goto_if 1, SaintFrancois_Aqua_Multi_Battle_2
 # 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
+	checktrainerflag TRAINER_RIVAL_LAB_FROAKIE
+	goto_if 1, SaintFrancois_Aqua_Multi_Battle_2
 # 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 59 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 60 "data/maps/SaintFrancois/scripts.pory"
-	walk_down
-	step_end
-
-# 63 "data/maps/SaintFrancois/scripts.pory"
-Rival_Arrives_SF_24:
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 64 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
-# 65 "data/maps/SaintFrancois/scripts.pory"
-	walk_down
-	step_end
-
-# 68 "data/maps/SaintFrancois/scripts.pory"
-Grunt_Goes_Up_SF:
+	checktrainerflag TRAINER_RIVAL_LAB_TREECKO
+	goto_if 1, SaintFrancois_Aqua_Multi_Battle_2
 # 69 "data/maps/SaintFrancois/scripts.pory"
-	walk_up
-# 69 "data/maps/SaintFrancois/scripts.pory"
-	walk_up
-	step_end
-
+	switch VAR_STARTER_MON
+# 70 "data/maps/SaintFrancois/scripts.pory"
+	case 0, SaintFrancois_Aqua_Multi_Battle_14
 # 72 "data/maps/SaintFrancois/scripts.pory"
-Girl_Goes_Up_SF_30:
-# 73 "data/maps/SaintFrancois/scripts.pory"
-	walk_up
-# 73 "data/maps/SaintFrancois/scripts.pory"
-	walk_up
+	case 1, SaintFrancois_Aqua_Multi_Battle_15
 # 74 "data/maps/SaintFrancois/scripts.pory"
-	walk_right
+	case 2, SaintFrancois_Aqua_Multi_Battle_16
+SaintFrancois_Aqua_Multi_Battle_1:
+# 78 "data/maps/SaintFrancois/scripts.pory"
+	goto SaintFrancois_Aqua_Multi_Battle_Treecko
+	return
+
+SaintFrancois_Aqua_Multi_Battle_2:
+# 60 "data/maps/SaintFrancois/scripts.pory"
+	switch VAR_STARTER_MON
+# 61 "data/maps/SaintFrancois/scripts.pory"
+	case 0, SaintFrancois_Aqua_Multi_Battle_10
+# 63 "data/maps/SaintFrancois/scripts.pory"
+	case 1, SaintFrancois_Aqua_Multi_Battle_11
+# 65 "data/maps/SaintFrancois/scripts.pory"
+	case 2, SaintFrancois_Aqua_Multi_Battle_12
+	goto SaintFrancois_Aqua_Multi_Battle_1
+
+SaintFrancois_Aqua_Multi_Battle_10:
+# 62 "data/maps/SaintFrancois/scripts.pory"
+	goto SaintFrancois_Aqua_Multi_Battle_Charmander
+	goto SaintFrancois_Aqua_Multi_Battle_1
+
+SaintFrancois_Aqua_Multi_Battle_11:
+# 64 "data/maps/SaintFrancois/scripts.pory"
+	goto SaintFrancois_Aqua_Multi_Battle_Froakie
+	goto SaintFrancois_Aqua_Multi_Battle_1
+
+SaintFrancois_Aqua_Multi_Battle_12:
+# 66 "data/maps/SaintFrancois/scripts.pory"
+	goto SaintFrancois_Aqua_Multi_Battle_Treecko
+	goto SaintFrancois_Aqua_Multi_Battle_1
+
+SaintFrancois_Aqua_Multi_Battle_14:
+# 71 "data/maps/SaintFrancois/scripts.pory"
+	goto SaintFrancois_Aqua_Multi_Battle_Treecko
+	goto SaintFrancois_Aqua_Multi_Battle_1
+
+SaintFrancois_Aqua_Multi_Battle_15:
+# 73 "data/maps/SaintFrancois/scripts.pory"
+	goto SaintFrancois_Aqua_Multi_Battle_Charmander
+	goto SaintFrancois_Aqua_Multi_Battle_1
+
+SaintFrancois_Aqua_Multi_Battle_16:
 # 75 "data/maps/SaintFrancois/scripts.pory"
+	goto SaintFrancois_Aqua_Multi_Battle_Froakie
+	goto SaintFrancois_Aqua_Multi_Battle_1
+
+
+SaintFrancois_Aqua_Multi_Battle_Treecko::
+# 82 "data/maps/SaintFrancois/scripts.pory"
+	multi_fixed_2_vs_2 TRAINER_SF_GRUNT_GIRL, SaintFrancois_Text_GruntGirlDefeat, TRAINER_SF_GRUNT_GUY, SaintFrancois_Text_GruntGuyDefeat, PARTNER_RIVAL_SF_TREECKO
+	return
+
+
+SaintFrancois_Aqua_Multi_Battle_Charmander::
+# 87 "data/maps/SaintFrancois/scripts.pory"
+	multi_fixed_2_vs_2 TRAINER_SF_GRUNT_GIRL, SaintFrancois_Text_GruntGirlDefeat, TRAINER_SF_GRUNT_GUY, SaintFrancois_Text_GruntGuyDefeat, PARTNER_RIVAL_SF_CHARMANDER
+	return
+
+
+SaintFrancois_Aqua_Multi_Battle_Froakie::
+# 92 "data/maps/SaintFrancois/scripts.pory"
+	multi_fixed_2_vs_2 TRAINER_SF_GRUNT_GIRL, SaintFrancois_Text_GruntGirlDefeat, TRAINER_SF_GRUNT_GUY, SaintFrancois_Text_GruntGuyDefeat, PARTNER_RIVAL_SF_FROAKIE
+	return
+
+
+# 104 "data/maps/SaintFrancois/scripts.pory"
+Girl_Sees_Prot_SF:
+# 105 "data/maps/SaintFrancois/scripts.pory"
+	emote_exclamation_mark
+	step_end
+
+# 108 "data/maps/SaintFrancois/scripts.pory"
+Guy_Sees_Prot_SF:
+# 109 "data/maps/SaintFrancois/scripts.pory"
+	emote_exclamation_mark
+# 110 "data/maps/SaintFrancois/scripts.pory"
+	walk_left
+# 111 "data/maps/SaintFrancois/scripts.pory"
+	walk_up
+	step_end
+
+# 114 "data/maps/SaintFrancois/scripts.pory"
+Rival_Arrives_SF_23:
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 115 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 116 "data/maps/SaintFrancois/scripts.pory"
+	walk_down
+	step_end
+
+# 119 "data/maps/SaintFrancois/scripts.pory"
+Rival_Arrives_SF_24:
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 120 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 121 "data/maps/SaintFrancois/scripts.pory"
+	walk_down
+	step_end
+
+# 124 "data/maps/SaintFrancois/scripts.pory"
+Grunt_Goes_Up_SF:
+# 125 "data/maps/SaintFrancois/scripts.pory"
+	walk_up
+# 125 "data/maps/SaintFrancois/scripts.pory"
+	walk_up
+	step_end
+
+# 128 "data/maps/SaintFrancois/scripts.pory"
+Girl_Goes_Up_SF_30:
+# 129 "data/maps/SaintFrancois/scripts.pory"
+	walk_up
+# 129 "data/maps/SaintFrancois/scripts.pory"
+	walk_up
+# 130 "data/maps/SaintFrancois/scripts.pory"
+	walk_right
+# 131 "data/maps/SaintFrancois/scripts.pory"
 	face_up
 	step_end
 
-# 78 "data/maps/SaintFrancois/scripts.pory"
+# 134 "data/maps/SaintFrancois/scripts.pory"
 Guy_Goes_Up_SF_30:
-# 79 "data/maps/SaintFrancois/scripts.pory"
+# 135 "data/maps/SaintFrancois/scripts.pory"
 	walk_up
-# 80 "data/maps/SaintFrancois/scripts.pory"
+# 136 "data/maps/SaintFrancois/scripts.pory"
 	walk_right
-# 81 "data/maps/SaintFrancois/scripts.pory"
+# 137 "data/maps/SaintFrancois/scripts.pory"
 	walk_up
 	step_end
 
@@ -264,3 +359,11 @@ SaintFrancois_Aqua_Fight_Text_6:
 # 31 "data/maps/SaintFrancois/scripts.pory"
 	.string "GRUNT: Ugh, you kids keep annoying me.\n"
 	.string "I've talked enough, let's fight!$"
+
+SaintFrancois_Text_GruntGirlDefeat::
+# 96 "data/maps/SaintFrancois/scripts.pory"
+	.string "No way! Beaten by a couple of kids?$"
+
+SaintFrancois_Text_GruntGuyDefeat::
+# 100 "data/maps/SaintFrancois/scripts.pory"
+	.string "Grr... This isn't over!$"
