@@ -68,7 +68,7 @@ const struct FieldMoveInfo gFieldMoveInfo[FIELD_MOVES_COUNT] =
     [FIELD_MOVE_ROCK_SMASH] =
     {
         .fieldMoveFunc = SetUpFieldMove_RockSmash,
-        .unlockType = BADGE_UNLOCK,
+        .unlockType = ALWAYS_UNLOCKED, // Zertruemmerer gibt es schon vor dem ersten Orden (Wanderer in der Hoehle)
         .moveID = MOVE_ROCK_SMASH,
         .partyMsgID = PARTY_MSG_CANT_USE_HERE,
         .arg = IS_FRLG ? FLAG_TO_BADGE(FLAG_BADGE06_GET) : FLAG_TO_BADGE(FLAG_BADGE03_GET),

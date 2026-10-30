@@ -1,1 +1,28 @@
 mapscripts Preroom_SF_LM_CAVE_MapScripts {}
+
+# Wanderer vor der Hoehle nach Le Moule.
+# Vor dem Gespraech mit dem Vater (Story < 7) laesst er niemanden durch,
+# danach prueft er den Spieler im Kampf und gibt bei Sieg Zertruemmerer.
+script Preroom_SF_LM_CAVE_EventScript_Wanderer {
+	lock
+	faceplayer
+	if (flag(FLAG_RECEIVED_ROCK_SMASH_HIKER)) {
+		msgbox(format("WANDERER: Use ROCK SMASH to break the rocks blocking the cave. Good luck on your way to Le Moule!"))
+	} elif (var(VAR_STORY_PROGRESS) < 7) {
+		msgbox(format("WANDERER: You are not ready to cross this cave yet."))
+	} else {
+		if (!defeated(TRAINER_CAVE_HIKER)) {
+			msgbox(format("WANDERER: So you want to cross the cave to Le Moule? It is full of rocks and wild Pokémon.\pLet me test you first. Show me what you've got!"))
+			trainerbattle_no_intro(TRAINER_CAVE_HIKER, format("Ha! You're stronger than you look!"))
+		}
+		msgbox(format("WANDERER: You passed my test. Take this, you will need it in the cave."))
+		giveitem(ITEM_HM06)
+		if (var(VAR_RESULT) == FALSE) {
+			msgbox(format("WANDERER: Your bag is full. Come back when you have room."))
+		} else {
+			setflag(FLAG_RECEIVED_ROCK_SMASH_HIKER)
+			msgbox(format("WANDERER: That's ROCK SMASH. Teach it to a Pokémon and it can break cracked rocks like the one behind me."))
+		}
+	}
+	release
+}

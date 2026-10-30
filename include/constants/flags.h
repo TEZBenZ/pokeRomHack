@@ -58,8 +58,8 @@
 #define FLAG_HIDE_RIVAL_SF    0x24 // Unused Flag
 #define FLAG_SF_AQUA_REMATCH  0x25 // Unused Flag
 #define FLAG_HIDE_AQUA_SF     0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
+#define FLAG_SA_PROTEST_OVER  0x27 // Westweg Saint Anne -> Pointe-a-Pitre offen
+#define FLAG_RECEIVED_ROCK_SMASH_HIKER 0x28 // Zertruemmerer vom Wanderer erhalten
 #define FLAG_UNUSED_0x029    0x29 // Unused Flag
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag

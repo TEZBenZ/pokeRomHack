@@ -18,6 +18,8 @@ SainteAnne_PlayersHouse_EventScript_Vater::
 	lock
 	faceplayer
 	goto_if_eq VAR_STORY_PROGRESS, 1, SainteAnne_PlayersHouse_EventScript_Goto_Lab
+	goto_if_eq VAR_STORY_PROGRESS, 6, SainteAnne_PlayersHouse_EventScript_Vater_Brother
+	goto_if_eq VAR_STORY_PROGRESS, 7, SainteAnne_PlayersHouse_EventScript_Vater_Reminder
 	msgbox SainteAnne_PlayersHouse_Text_Vater, MSGBOX_DEFAULT
 	release
 	end
@@ -41,3 +43,18 @@ SainteAnne_PlayersHouse_Text_Vater:
 	.string "Good to see you again!\p"
 	.string "Get a little rest$"
 `
+
+# Nach dem Professor (Story 6): Vater schickt den Spieler zum Bruder nach Pointe-a-Pitre
+script SainteAnne_PlayersHouse_EventScript_Vater_Brother {
+	msgbox(format("FATHER: Hey {PLAYER}! The professor gave you a Pokédex? I'm proud of you!"))
+	msgbox(format("FATHER: You should visit your brother in Pointe-à-Pitre. He just started a new job there!"))
+	msgbox(format("FATHER: The direct road to the west is blocked because of the street protests."))
+	msgbox(format("FATHER: Take the detour north via Le Moule instead. Take care on the way!"))
+	setvar(VAR_STORY_PROGRESS, 7)
+	release
+}
+
+script SainteAnne_PlayersHouse_EventScript_Vater_Reminder {
+	msgbox(format("FATHER: Your brother is waiting for you in Pointe-à-Pitre. Remember, take the road north via Le Moule!"))
+	release
+}

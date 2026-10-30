@@ -10523,8 +10523,8 @@ Numel
 Level: 22
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-=== TRAINER_MARC ===
-Name: MARC
+=== TRAINER_CAVE_HIKER ===
+Name: WANDERER
 Class: Hiker
 Pic: Hiker
 Gender: Male
@@ -10533,11 +10533,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Geodude
-Level: 8
-IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
+Level: 9
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
-Geodude
-Level: 8
+Makuhita
+Level: 10
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 === TRAINER_BRENDEN ===
