@@ -9386,6 +9386,26 @@
       "secondary_tileset": "gTileset_Dewford",
       "border_filepath": "data/layouts/SaintFrancois/border.bin",
       "blockdata_filepath": "data/layouts/SaintFrancois/map.bin"
+    },
+    {
+      "id": "LAYOUT_PREROOM_SF_LM_CAVE",
+      "name": "Preroom_SF_LM_CAVE_Layout",
+      "width": 11,
+      "height": 11,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/Preroom_SF_LM_CAVE/border.bin",
+      "blockdata_filepath": "data/layouts/Preroom_SF_LM_CAVE/map.bin"
+    },
+    {
+      "id": "LAYOUT_SF_LM_CAVE",
+      "name": "SF_LM_CAVE_Layout",
+      "width": 20,
+      "height": 80,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/SF_LM_CAVE/border.bin",
+      "blockdata_filepath": "data/layouts/SF_LM_CAVE/map.bin"
     }
   ]
 }
