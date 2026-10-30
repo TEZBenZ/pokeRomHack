@@ -136,8 +136,9 @@ script SainteAnne_ProfessorHouse_EventScript_Parcel {
 }
 
 script SaintAnne_Block_SaintFrancois {
-	#CHANGE VAR VALUE ACCORDINGLY TO STORY PROGRESS
-	if(var(VAR_STORY_PROGRESS) < 4){
+	# Direkter Weg nach Pointe-a-Pitre (Westen) ist wegen Strassenprotesten gesperrt.
+	# Oeffnet erst, wenn FLAG_SA_PROTEST_OVER spaeter in der Story gesetzt wird.
+	if(!flag(FLAG_SA_PROTEST_OVER)){
 		lockall
 		playse(SE_PIN)
 		applymovement(LOCALID_POLICEMAN, Common_Movement_ExclamationMark)

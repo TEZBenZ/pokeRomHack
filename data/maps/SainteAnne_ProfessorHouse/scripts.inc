@@ -292,82 +292,81 @@ SainteAnne_ProfessorHouse_EventScript_Parcel::
 
 
 SaintAnne_Block_SaintFrancois::
-# 140 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	compare VAR_STORY_PROGRESS, 4
-	goto_if_lt SaintAnne_Block_SaintFrancois_1
+# 141 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+	goto_if_unset FLAG_SA_PROTEST_OVER, SaintAnne_Block_SaintFrancois_1
 	return
 
 SaintAnne_Block_SaintFrancois_1:
-# 141 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	lockall
 # 142 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	playse SE_PIN
+	lockall
 # 143 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	applymovement LOCALID_POLICEMAN, Common_Movement_ExclamationMark
+	playse SE_PIN
 # 144 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_POLICEMAN, Common_Movement_ExclamationMark
 # 145 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	msgbox SaintAnne_Block_SaintFrancois_Text_0
-# 146 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_Block_SaintFrancois
-# 147 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	waitmovement 0
+# 146 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+	msgbox SaintAnne_Block_SaintFrancois_Text_0
+# 147 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Movement_Block_SaintFrancois
 # 148 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+	waitmovement 0
+# 149 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	releaseall
 	return
 
 
-# 152 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-Movement_Block_SaintFrancois:
 # 153 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	walk_right
+Movement_Block_SaintFrancois:
 # 154 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+	walk_right
+# 155 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	delay_16
 	step_end
 
-# 156 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+# 157 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 SainteAnne_ProfessorHouse_Movement_RIVAL_COMES_IN:
-# 157 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	walk_up
-# 157 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	walk_up
-# 157 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+# 158 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	walk_up
 # 158 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+	walk_up
+# 158 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+	walk_up
+# 159 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	emote_exclamation_mark
 	step_end
 
-# 161 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-SainteAnne_ProfessorHouse_Movement_PLAYER_OUT_OF_WAY:
 # 162 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	walk_left
+SainteAnne_ProfessorHouse_Movement_PLAYER_OUT_OF_WAY:
 # 163 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+	walk_left
+# 164 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	face_right
 	step_end
 
-# 166 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+# 167 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 SainteAnne_ProfessorHouse_Movement_RIVAL_GETS_STARTER:
-# 167 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	walk_up
-# 167 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+# 168 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	walk_up
 # 168 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
-	delay_16
+	walk_up
 # 169 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+	delay_16
+# 170 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	face_left
 	step_end
 
-# 172 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+# 173 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 SainteAnne_ProfessorHouse_Movement_RIVAL_GOES_OUT:
-# 173 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+# 174 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	walk_down
-# 173 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+# 174 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	walk_down
-# 173 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+# 174 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	walk_down
-# 173 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+# 174 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	walk_down
-# 173 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+# 174 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	walk_down
 	step_end
 
@@ -426,6 +425,6 @@ SainteAnne_ProfessorHouse_EventScript_Parcel_Text_3:
 	.string "go and see him!$"
 
 SaintAnne_Block_SaintFrancois_Text_0:
-# 145 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
+# 146 "data/maps/SainteAnne_ProfessorHouse/scripts.pory"
 	.string "You can't go there! Protesters are\n"
 	.string "blocking the Road.$"

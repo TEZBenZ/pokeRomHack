@@ -864,6 +864,7 @@
 #define TRAINER_RIVAL_LAB_CHARMANDER        TRAINER_BRENDAN_ROUTE_103_TORCHIC
 #define TRAINER_SF_GRUNT_GIRL               TRAINER_GRUNT_AQUA_HIDEOUT_1  
 #define TRAINER_SF_GRUNT_GUY                TRAINER_GRUNT_AQUA_HIDEOUT_2
+#define TRAINER_CAVE_HIKER                  TRAINER_MARC
 
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
