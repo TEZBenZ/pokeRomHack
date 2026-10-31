@@ -1754,3 +1754,5 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/Preroom_SF_LM_CAVE/scripts.inc"
 
 	.include "data/maps/SF_LM_CAVE/scripts.inc"
+
+	.include "data/maps/LeMoule/scripts.inc"
