@@ -865,6 +865,9 @@
 #define TRAINER_SF_GRUNT_GIRL               TRAINER_GRUNT_AQUA_HIDEOUT_1  
 #define TRAINER_SF_GRUNT_GUY                TRAINER_GRUNT_AQUA_HIDEOUT_2
 #define TRAINER_CAVE_HIKER                  TRAINER_MARC
+#define TRAINER_RIVAL_LM_TREECKO            TRAINER_BRENDAN_RUSTBORO_TREECKO
+#define TRAINER_RIVAL_LM_FROAKIE            TRAINER_BRENDAN_RUSTBORO_MUDKIP
+#define TRAINER_RIVAL_LM_CHARMANDER         TRAINER_BRENDAN_RUSTBORO_TORCHIC
 
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
