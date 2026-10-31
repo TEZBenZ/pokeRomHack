@@ -36,6 +36,13 @@
       "elevation": 0,
       "dest_map": "MAP_SF_LM_CAVE",
       "dest_warp_id": "1"
+    },
+    {
+      "x": 18,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_LE_MOULE_GYM",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

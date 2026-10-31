@@ -9413,9 +9413,19 @@
       "width": 40,
       "height": 40,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Petalburg",
+      "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/LeMoule/border.bin",
       "blockdata_filepath": "data/layouts/LeMoule/map.bin"
+    },
+    {
+      "id": "LAYOUT_LE_MOULE_GYM",
+      "name": "LeMoule_Gym_Layout",
+      "width": 19,
+      "height": 40,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_SootopolisGym",
+      "border_filepath": "data/layouts/LeMoule_Gym/border.bin",
+      "blockdata_filepath": "data/layouts/LeMoule_Gym/map.bin"
     }
   ]
 }

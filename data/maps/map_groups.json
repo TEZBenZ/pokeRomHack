@@ -75,7 +75,8 @@
     "gMapGroup_IndoorTwoIslandRoute_Frlg",
     "gMapGroup_IndoorSixIslandRoute_Frlg",
     "gMapGroup_IndoorSevenIslandRoute_Frlg",
-    "gMapGroup_IndoorSaintAnne"
+    "gMapGroup_IndoorSaintAnne",
+    "gMapGroup_IndoorLeMoule"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -1172,5 +1173,8 @@
     "SainteAnne_PlayersHouse",
     "SainteAnne_RivalHouse",
     "SainteAnne_ProfessorHouse"
+  ],
+  "gMapGroup_IndoorLeMoule": [
+    "LeMoule_Gym"
   ]
 }
