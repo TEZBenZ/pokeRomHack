@@ -60,7 +60,7 @@
 #define FLAG_HIDE_AQUA_SF     0x26 // Unused Flag
 #define FLAG_SA_PROTEST_OVER  0x27 // Westweg Saint Anne -> Pointe-a-Pitre offen
 #define FLAG_RECEIVED_ROCK_SMASH_HIKER 0x28 // Zertruemmerer vom Wanderer erhalten
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
+#define FLAG_HIDE_RIVAL_LM   0x29 // Rivale in Le Moule versteckt
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag

@@ -1,1 +1,130 @@
-mapscripts LeMoule_MapScripts {}
+mapscripts LeMoule_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        # Rivale bleibt versteckt, bis der Spieler die Trigger-Felder betritt
+        setflag(FLAG_HIDE_RIVAL_LM)
+        if (defeated(TRAINER_RIVAL_LM_TREECKO) || defeated(TRAINER_RIVAL_LM_FROAKIE) || defeated(TRAINER_RIVAL_LM_CHARMANDER)) {
+            # Kampf schon gewonnen, Trigger nicht erneut starten
+            setvar(VAR_TEMP_0, 1)
+        }
+    }
+}
+
+# Spieler betritt die Trigger-Felder am Höhlenausgang: Rivale erscheint,
+# läuft zum Spieler und fordert ihn heraus.
+script LeMoule_Rival_Fight {
+    lockall
+    playbgm(MUS_ENCOUNTER_MAY, FALSE)
+    clearflag(FLAG_HIDE_RIVAL_LM)
+    addobject(LOCALID_RIVAL_LeMoule)
+    applymovement(OBJ_EVENT_ID_PLAYER, LeMoule_Movement_PlayerNotices)
+    waitmovement(0)
+
+    # Rivale steht auf (19,31). Er läuft bis direkt rechts neben den Spieler.
+    getplayerxy(VAR_TEMP_1, VAR_TEMP_2)
+    if (var(VAR_TEMP_2) == 30) {
+        switch (var(VAR_TEMP_1)) {
+            case 6:
+                applymovement(LOCALID_RIVAL_LeMoule, LeMoule_Movement_Rival_Up_12)
+            case 7:
+                applymovement(LOCALID_RIVAL_LeMoule, LeMoule_Movement_Rival_Up_11)
+            default:
+                applymovement(LOCALID_RIVAL_LeMoule, LeMoule_Movement_Rival_Up_10)
+        }
+    } else {
+        switch (var(VAR_TEMP_1)) {
+            case 6:
+                applymovement(LOCALID_RIVAL_LeMoule, LeMoule_Movement_Rival_12)
+            case 7:
+                applymovement(LOCALID_RIVAL_LeMoule, LeMoule_Movement_Rival_11)
+            default:
+                applymovement(LOCALID_RIVAL_LeMoule, LeMoule_Movement_Rival_10)
+        }
+    }
+    waitmovement(LOCALID_RIVAL_LeMoule)
+
+    msgbox(format("RIVAL: {PLAYER}! There you are! I've been waiting for ages.\pI caught a new Pokemon on the way here. Let's see if you can keep up with us!"))
+    call(LeMoule_Rival_Battle)
+
+    msgbox(format("RIVAL: Okay, okay, you got lucky. Next time I'll win for sure!\pI'm heading on ahead. See you, {PLAYER}!"))
+    closemessage
+    applymovement(LOCALID_RIVAL_LeMoule, LeMoule_Movement_Rival_Leaves)
+    waitmovement(LOCALID_RIVAL_LeMoule)
+    removeobject(LOCALID_RIVAL_LeMoule)
+    setflag(FLAG_HIDE_RIVAL_LM)
+    setvar(VAR_TEMP_0, 1)
+    releaseall
+}
+
+# Rivale hat das Starter-Pokemon aus dem Labor. Hat der Spieler dort verloren,
+# wurden die Pokemon getauscht und der Rivale hat das ursprüngliche des Spielers.
+# (gleiche Logik wie SaintFrancois_Aqua_Multi_Battle)
+script LeMoule_Rival_Battle {
+    if (defeated(TRAINER_RIVAL_LAB_CHARMANDER) || defeated(TRAINER_RIVAL_LAB_FROAKIE) || defeated(TRAINER_RIVAL_LAB_TREECKO)) {
+        switch (var(VAR_STARTER_MON)) {
+            case 0:
+                trainerbattle_no_intro(TRAINER_RIVAL_LM_CHARMANDER, LeMoule_Text_RivalDefeat)
+            case 1:
+                trainerbattle_no_intro(TRAINER_RIVAL_LM_FROAKIE, LeMoule_Text_RivalDefeat)
+            default:
+                trainerbattle_no_intro(TRAINER_RIVAL_LM_TREECKO, LeMoule_Text_RivalDefeat)
+        }
+    } else {
+        switch (var(VAR_STARTER_MON)) {
+            case 0:
+                trainerbattle_no_intro(TRAINER_RIVAL_LM_TREECKO, LeMoule_Text_RivalDefeat)
+            case 1:
+                trainerbattle_no_intro(TRAINER_RIVAL_LM_CHARMANDER, LeMoule_Text_RivalDefeat)
+            default:
+                trainerbattle_no_intro(TRAINER_RIVAL_LM_FROAKIE, LeMoule_Text_RivalDefeat)
+        }
+    }
+    return
+}
+
+# Falls der Rivale noch sichtbar ist und angesprochen wird
+script LeMoule_Rival_Talk {
+    lock
+    faceplayer
+    msgbox(format("RIVAL: Come on, {PLAYER}, let's battle!"))
+    release
+}
+
+text LeMoule_Text_RivalDefeat {
+    format("What?! Even with two Pokemon I lost?")
+}
+
+movement LeMoule_Movement_PlayerNotices {
+    face_right
+    emote_exclamation_mark
+}
+
+movement LeMoule_Movement_Rival_10 {
+    walk_left * 10
+}
+
+movement LeMoule_Movement_Rival_11 {
+    walk_left * 11
+}
+
+movement LeMoule_Movement_Rival_12 {
+    walk_left * 12
+}
+
+movement LeMoule_Movement_Rival_Up_10 {
+    walk_up
+    walk_left * 10
+}
+
+movement LeMoule_Movement_Rival_Up_11 {
+    walk_up
+    walk_left * 11
+}
+
+movement LeMoule_Movement_Rival_Up_12 {
+    walk_up
+    walk_left * 12
+}
+
+movement LeMoule_Movement_Rival_Leaves {
+    walk_right * 12
+}
